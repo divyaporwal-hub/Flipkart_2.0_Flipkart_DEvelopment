@@ -1,54 +1,79 @@
+/**
+ * 
+ */
 package com.flipkart.bean;
 
-
-import com.flipkart.utils.TypeOfNotification;
-
+/**
+ * @author Dell
+ *
+ */
 public class Notification {
-	private int notificationId;
-	private int studentId;
-	private TypeOfNotification type;
-	private String referenceId;
-	
+	private String notificationID;
+	private String paymentID;
+	private String message;
 
-	public Notification(int notificationId, int studentId, TypeOfNotification type, String referenceId)
-	{
-		this.notificationId = notificationId;
-		this.studentId = studentId;
-		this.type = type;
-		this.referenceId = referenceId;
+	
+	public Notification() {
+		notificationID="null";
+		paymentID="null";
+		message="NothingToDisplay";
 	}
 	
-
-	public int getNotificationId() {
-		return notificationId;
-	}
 	
-
-	public int getStudentId() {
-		return studentId;
+	public Notification(String notificationID, String paymentID, String message) {
+		super();
+		this.notificationID = notificationID;
+		this.paymentID = paymentID;
+		this.message = message;
 	}
-	
-
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
-	
-
-	public TypeOfNotification getType() {
-		return type;
-	}
-	
-
-	public void setType(TypeOfNotification type) {
-		this.type = type;
+	public String getNotificationID() {
+		return notificationID;
 	}
 
 
-	public String getReferenceId() {
-		return referenceId;
+	public void setNotificationID(String notificationID) {
+		this.notificationID = notificationID;
 	}
 
-	public void setReferenceId(String referenceId) {
-		this.referenceId = referenceId;
+
+	public String getPaymentID() {
+		return paymentID;
 	}
+
+
+	public void setPaymentID(String paymentID) {
+		this.paymentID = paymentID;
+	}
+
+
+	public String getMessage() {
+		return message;
+	}
+
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public void showPaymentNotification(String message,String ID){
+		System.out.println("+-----------------------------------+");
+		System.out.println("|         Notification Alert!       |");
+		System.out.println("+-----------------------------------+");
+		System.out.println("|          Payment Completed!       |");
+		System.out.println("|   Student ID: " + message);
+		System.out.println("|   Amount    : " + "1000");
+		System.out.println("|   Transaction ID: " + ID);
+		System.out.println("+-----------------------------------+");
+	}
+
+	public void showRegistrationNotification(){
+		System.out.println("+-----------------------------------+");
+		System.out.println("|         Notification Alert!       |");
+		System.out.println("+-----------------------------------+");
+		System.out.println("|      Registration Completed!      |");
+		System.out.println("|    Please Complete Fee Payment!   |");
+		System.out.println("+-----------------------------------+");
+	}
+
+
 }
