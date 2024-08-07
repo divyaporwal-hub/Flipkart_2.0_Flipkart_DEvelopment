@@ -18,11 +18,9 @@ public class Student {
     SemesterRegistrationInterface sro = SemesterRegistrationOperation.getInstance();
     StudentInterface so = StudentOperation.getInstance();
 
-    // Home page for a Student Login.
     public void createStudentMenu(String username) {
 
         try {
-        	
         	studentID = getStudentID(username);
             assert studentID != -1;
 
