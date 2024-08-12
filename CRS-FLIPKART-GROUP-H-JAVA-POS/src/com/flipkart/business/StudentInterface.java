@@ -1,10 +1,13 @@
 package com.flipkart.business;
 
 import java.util.List;
-
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Student;
 
+/**
+ * Defines operations for managing student-related activities including course registration,
+ * viewing enrolled courses, obtaining report cards, billing information, and handling payments.
+ */
 public interface StudentInterface {
 
     /**
@@ -65,4 +68,3 @@ public interface StudentInterface {
      */
     public float getCoursePricing(Student student);
 }
-

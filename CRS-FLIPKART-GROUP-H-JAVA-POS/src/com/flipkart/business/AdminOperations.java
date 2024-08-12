@@ -10,111 +10,112 @@ import com.flipkart.exception.UserAlreadyExistsException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.dao.AdminDaoInterface;
 
-public class AdminOperations implements AdminInterface{
+/**
+ * 
+ * @author GROUP-H
+ * Class to handle administrative operations related to professors, courses, and students.
+ * Implements the AdminInterface.
+ * 
+ */
+public class AdminOperations implements AdminInterface {
+    
+    AdminDaoInterface adi = new AdminDaoServices();
+
     /**
-     * Method to add a professor
-     * @param professor: the professor to add
+     * Method to add a professor.
+     * @param prof: the professor to add
+     * @param username: the username for the professor
+     * @return a success message with the professor ID if added, or "Operation Failed..." if not
      */
-	AdminDaoInterface adi=new AdminDaoServices();
-	
     public String addProf(Prof prof, String username) {
-		String userID;
-		try {
-			userID = adi.addProf(prof, username);
-			if(!userID.isEmpty())return "Professor Added with id: "+userID;
-		} catch (UserAlreadyExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    		return "Operation Failed...";
-    		//userInstance.makeNew(username,(User)prof);
+        String userID;
+        try {
+            userID = adi.addProf(prof, username);
+            if (!userID.isEmpty()) return "Professor Added with id: " + userID;
+        } catch (UserAlreadyExistsException e) {
+            e.printStackTrace();
+        }
+        return "Operation Failed...";
     }
 
     /**
-     * Method to remove a professor
-     * @param professorID: the ID of the professor to remove
-     * @return true if professor was removed successfully, false otherwise
+     * Method to remove a professor.
+     * @param profID: the ID of the professor to remove
+     * @return a success message if the professor was removed, or "Operation Failed..." if not
      */
     public String removeProf(String profID) {
-    	//prof.setRole("user");
-    	try {
-			if(adi.removeProf(profID))return "Professor removed successfully";
-		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return "Operation Failed..."; // Professor ID not found
+        try {
+            if (adi.removeProf(profID)) return "Professor removed successfully";
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "Operation Failed...";
     }
 
     /**
-     * Method to update a course
-     * @param courseCode: the code of the course to update
+     * Method to update a course.
+     * @param courseID: the code of the course to update
      * @param updatedCourse: the updated course details
-     * @return true if course was updated successfully, false otherwise
+     * @return a success message if the course was updated, or "Operation Failed..." if not
      */
     public String updateCourse(String courseID, Course updatedCourse) {
-        //catalog.removeCourse(courseCode);
-        //catalog.addCourse(updatedCourse);
-    	try {
-			if(adi.updateCourse(courseID, updatedCourse))return "Course information updated successfully";
-		} catch (CourseAlreadyExistsException | CourseNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return "Operation Failed...";
+        try {
+            if (adi.updateCourse(courseID, updatedCourse)) return "Course information updated successfully";
+        } catch (CourseAlreadyExistsException | CourseNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "Operation Failed...";
     }
 
     /**
-     * Method to add a course
+     * Method to add a course.
      * @param course: the course to add
+     * @return a success message if the course was added, or "Operation Failed..." if not
      */
     public String addCourse(Course course) {
-    	//
-    	//catalog.addCourse(course);
-    	try {
-			if(adi.addCourse(course))return "Course added Successfully";
-		} catch (CourseAlreadyExistsException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return "Operation Failed...";
+        try {
+            if (adi.addCourse(course)) return "Course added Successfully";
+        } catch (CourseAlreadyExistsException e) {
+            e.printStackTrace();
+        }
+        return "Operation Failed...";
     }
 
     /**
-     * Method to remove a course
-     * @param courseCode: the code of the course to remove
-     * @return true if course was removed successfully, false otherwise
+     * Method to remove a course.
+     * @param courseID: the code of the course to remove
+     * @return a success message if the course was removed, or "Operation Failed..." if not
      */
     public String removeCourse(String courseID) {
-        //return catalog.removeCourse(courseCode);
-    	try {
-			if(adi.removeCourse(courseID))return "Course removed Successfully";
-		} catch (CourseNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return "Operation Failed...";
+        try {
+            if (adi.removeCourse(courseID)) return "Course removed Successfully";
+        } catch (CourseNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "Operation Failed...";
     }
 
     /**
-     * Method to register a student
-     * @param student: the student to register
+     * Method to register a student.
+     * @param studentID: the ID of the student to register
+     * @return a success message if the student was approved, or "Operation Failed..." if not
      */
     public String registerStudent(String studentID) {
-    	try {
-			if(adi.registerStudent(studentID))return "Student approved";
-		} catch (UserNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return "Operation Failed...";
-    	//student.setApproved(true);
+        try {
+            if (adi.registerStudent(studentID)) return "Student approved";
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
+        return "Operation Failed...";
     }
 
-	@Override
-	public String viewCourses() {
-		// TODO Auto-generated method stub
-		Set<Course> courses = adi.viewCourses();
+    /**
+     * Method to view all courses.
+     * @return a string representation of all courses with their details
+     */
+    @Override
+    public String viewCourses() {
+        Set<Course> courses = adi.viewCourses();
         StringBuilder catalog = new StringBuilder();
         courses.forEach(course -> {
             String prof = course.getCourseProf();
@@ -124,32 +125,13 @@ public class AdminOperations implements AdminInterface{
                    .append(prof).append("\t\t")
                    .append(course.getSeats()).append("\n");
         });
-        return catalog.toString().trim(); 
-	}
-	
-	@Override
-	public String viewProfessors() {
-		// TODO Auto-generated method stub
-        Set<Prof> profs = adi.viewProfessors();
-        StringBuilder catalog = new StringBuilder();
-        profs.forEach(prof -> 
-            catalog.append(prof.getName()).append("\t\t")
-                   .append(prof.getID()).append("\t\t")
-                   .append(prof.getDept()).append("\n")
-        );
-        return catalog.toString().trim(); 
-	}
+        return catalog.toString().trim();
+    }
 
-	@Override
-	public String viewUnapprovedStudents() {
-		// TODO Auto-generated method stub
-		Set<Student> studentList = adi.viewUnapprovedStudents();
-        StringBuilder students = new StringBuilder();
-        studentList.forEach(student -> 
-            students.append(student.getID()).append("\t\t")
-                    .append(student.getName()).append("\t\t")
-                    .append(student.getRollNum()).append("\n")
-        );
-        return students.toString().trim();
-	}
-}
+    /**
+     * Method to view all professors.
+     * @return a string representation of all professors with their details
+     */
+    @Override
+    public String viewProfessors() {
+        Set<Prof> profs = adi.viewProfessors​⬤

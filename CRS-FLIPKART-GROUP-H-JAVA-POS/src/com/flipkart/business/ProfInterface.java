@@ -1,11 +1,13 @@
 package com.flipkart.business;
 
-import java.util.Set;
-
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Prof;
 import com.flipkart.bean.Student;
 
+/**
+ * Interface defining operations for professors related to course offerings, student management, and grading.
+ * Provides methods for offering courses, retrieving student lists, submitting grades, and viewing courses.
+ */
 public interface ProfInterface {
 
     /**
@@ -47,4 +49,3 @@ public interface ProfInterface {
      */
     public String viewCourseOffering(Prof prof);
 }
-

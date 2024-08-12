@@ -1,11 +1,17 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.Catalog;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Prof;
 import com.flipkart.bean.Student;
-import com.flipkart.bean.User;
 
+/**
+ * 
+ * @author GROUP-H
+ * Interface defining administrative operations for managing professors, courses, and students.
+ * Provides methods for adding, removing, and updating professors and courses, 
+ * as well as approving student registrations and viewing system data.
+ * 
+ */
 public interface AdminInterface {
 
     /**

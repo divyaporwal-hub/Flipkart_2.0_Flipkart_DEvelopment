@@ -8,81 +8,75 @@ import com.flipkart.exception.CourseNotOfferedException;
 import com.flipkart.exception.CourseNotOptedException;
 import com.flipkart.exception.GradeAlreadyAddedException;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Set;
 
+/**
+ * Implements the `ProfInterface` to provide operations for professors related to course offerings, student management, and grading.
+ */
+public class ProfOperations implements ProfInterface {
 
-public class ProfOperations implements ProfInterface{
-	ProfDaoInterface pdi = new ProfDaoServices();
+    private ProfDaoInterface pdi = new ProfDaoServices();
+
     /**
-     * Method to offer a course
-     * @param course: the course to be offered
+     * Allows a professor to offer a course.
+     * @param courseID The ID of the course being offered.
+     * @param prof The `Prof` object representing the professor offering the course.
+     * @return A `String` message indicating the result of the operation (e.g., success or failure).
      */
     public String offerCourse(String courseID, Prof prof) {
         try {
-			if(pdi.offerCourse(courseID, prof))return "Course enrolled successfully";
-		} catch (CourseNotAvailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+            if (pdi.offerCourse(courseID, prof)) {
+                return "Course enrolled successfully";
+            }
+        } catch (CourseNotAvailableException e) {
+            e.printStackTrace();
+        }
         return "Enrollment failed...";
-        //
     }
 
     /**
-     * Method to get the registered students for a given course
-     * @param course: the course for which to get the registered students
-     * @return set of registered students
+     * Retrieves a list of students registered for a specific course.
+     * @param courseID The ID of the course whose students are to be retrieved.
+     * @param prof The `Prof` object representing the professor requesting the student list.
+     * @return A `String` representation of the list of students registered for the course.
      */
     public String getStudents(String courseID, Prof prof) {
-    	//return prof.getRegisteredStudents(courseID);
-    	Set<Student> studentList = pdi.getStudents(courseID, prof);
+        Set<Student> studentList = pdi.getStudents(courseID, prof);
         StringBuilder students = new StringBuilder();
-        studentList.forEach(student -> 
+        studentList.forEach(student ->
             students.append(student.getID()).append("\t")
                     .append(student.getName()).append("\t\t")
                     .append(student.getRollNum()).append("\n")
         );
-        return students.toString().trim(); 
+        return students.toString().trim();
     }
 
     /**
-     * Method to give a grade to a student in a course
-     * @param course: the course in which the grade is to be given
-     * @param student: the student to whom the grade is to be given
-     * @param grade: the grade to be given
-     * @return true if grade was successfully assigned, false otherwise
+     * Submits a grade for a student in a specific course.
+     * @param courseID The ID of the course for which the grade is being submitted.
+     * @param studentID The ID of the student receiving the grade.
+     * @param grade The grade being assigned to the student.
+     * @param prof The `Prof` object representing the professor submitting the grade.
+     * @return A `String` message indicating the result of the operation (e.g., success or failure).
      */
     public String giveGrade(String courseID, String studentID, String grade, Prof prof) {
-         // Student is not registered for the course
-    	//Set<Student> studentList=prof.getRegisteredStudents(courseID);
-    	
-    	/*for(Student stu:studentList) {
-    		if(stu.getID().equals(studentID)) {
-    			stu.updateGrade(courseID, grade);
-    			return true;
-    		}
-    	}*/
-    	try {
-			if(pdi.giveGrade(courseID, studentID, grade, prof))return "Grade submitted successfully";
-		} catch (CourseNotOptedException | GradeAlreadyAddedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (CourseNotOfferedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	return "Grade submission failed...";
+        try {
+            if (pdi.giveGrade(courseID, studentID, grade, prof)) {
+                return "Grade submitted successfully";
+            }
+        } catch (CourseNotOptedException | GradeAlreadyAddedException | CourseNotOfferedException e) {
+            e.printStackTrace();
+        }
+        return "Grade submission failed...";
     }
-    
+
+    /**
+     * Retrieves a list of all available courses.
+     * @return A `String` representation of the list of available courses.
+     */
     @Override
-	public String viewCourses() {
-		// TODO Auto-generated method stub
-    	Set<Course> courses = pdi.viewCourses();
+    public String viewCourses() {
+        Set<Course> courses = pdi.viewCourses();
         StringBuilder catalog = new StringBuilder();
         courses.forEach(course -> {
             String prof = course.getCourseProf();
@@ -93,17 +87,21 @@ public class ProfOperations implements ProfInterface{
                    .append(course.getSeats()).append("\n");
         });
         return catalog.toString().trim();
-	}
+    }
 
-	@Override
-	public String viewCourseOffering(Prof prof) {
-		// TODO Auto-generated method stub
-		Set<Course> courses = pdi.viewCourseOffering(prof);
+    /**
+     * Retrieves a list of courses currently being offered by a specific professor.
+     * @param prof The `Prof` object representing the professor whose course offerings are to be retrieved.
+     * @return A `String` representation of the list of courses being offered by the professor.
+     */
+    @Override
+    public String viewCourseOffering(Prof prof) {
+        Set<Course> courses = pdi.viewCourseOffering(prof);
         StringBuilder catalog = new StringBuilder();
-        courses.forEach(course -> 
+        courses.forEach(course ->
             catalog.append(course.getCourseID()).append("\t")
                    .append(course.getCourseName()).append("\n")
         );
         return catalog.toString().trim();
-	}
+    }
 }
