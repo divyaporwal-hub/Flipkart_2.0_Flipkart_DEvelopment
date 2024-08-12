@@ -19,7 +19,7 @@ import com.flipkart.dao.AdminDaoInterface;
  */
 public class AdminOperations implements AdminInterface {
     
-    AdminDaoInterface adi = new AdminDaoServices();
+    private AdminDaoInterface adi = new AdminDaoServices();
 
     /**
      * Method to add a professor.
@@ -134,4 +134,29 @@ public class AdminOperations implements AdminInterface {
      */
     @Override
     public String viewProfessors() {
-        Set<Prof> profs = adi.viewProfessors​⬤
+        Set<Prof> profs = adi.viewProfessors();
+        StringBuilder catalog = new StringBuilder();
+        profs.forEach(prof ->
+            catalog.append(prof.getName()).append("\t\t")
+                   .append(prof.getID()).append("\t\t")
+                   .append(prof.getDept()).append("\n")
+        );
+        return catalog.toString().trim();
+    }
+
+    /**
+     * Method to view all unapproved students.
+     * @return a string representation of all unapproved students with their details
+     */
+    @Override
+    public String viewUnapprovedStudents() {
+        Set<Student> studentList = adi.viewUnapprovedStudents();
+        StringBuilder students = new StringBuilder();
+        studentList.forEach(student ->
+            students.append(student.getID()).append("\t\t")
+                    .append(student.getName()).append("\t\t")
+                    .append(student.getRollNum()).append("\n")
+        );
+        return students.toString().trim();
+    }
+}
