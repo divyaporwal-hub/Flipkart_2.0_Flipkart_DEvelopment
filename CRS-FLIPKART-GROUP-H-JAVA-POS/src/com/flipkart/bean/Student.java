@@ -2,108 +2,128 @@ package com.flipkart.bean;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
+ * The Student class stores information about a student and inherits from the User class.
+ * It tracks details such as the student's branch, roll number, registered courses, and approval status.
  * 
- * @author JEDI-03
- * Class to store Student information, inheriting from User
- * 
+ * @author GROUP-H
  */
 public class Student extends User {
 
     private String branch;
     private int rollNum;
     private List<String> registeredCourses; // List of courses registered by the student
-/*    private Billing billing; // Aggregated Billing object
-    private ReportCard report;*/
-    private boolean approved;
+    private boolean approved; // Approval status of the student
+
     /**
-     * Parameterized constructor
-     * @param ID: the student ID
-     * @param name: the student's name
-     * @param contact: the student's contact information
-     * @param email: the student's email
-     * @param branch: the branch of the student
-     * @param rollNum: the roll number of the student
-     * @param billing: the billing information of the student
+     * Constructs a Student object with the specified details.
+     * 
+     * @param ID         the student ID
+     * @param name       the student's name
+     * @param contact    the student's contact information
+     * @param email      the student's email
+     * @param branch     the branch of the student
+     * @param rollNum    the roll number of the student
+     * @param approved   the approval status of the student
+     * @param password   the password for the student
      */
     public Student(String ID, String name, String contact, String email, String branch, int rollNum, boolean approved, String password) {
         super(ID, name, "Student", contact, email, password);
-        this.branch = branch; 
+        this.branch = branch;
         this.rollNum = rollNum;
         this.registeredCourses = new ArrayList<>();
-//        this.billing = billing;
-//        this.report=new ReportCard(ID);
-        this.approved=approved;
+        this.approved = approved;
     }
 
-    // Getters and Setters for branch, rollNum, and billing
+    /**
+     * Gets the branch of the student.
+     * 
+     * @return the branch of the student
+     */
     public String getBranch() {
         return branch;
     }
 
+    /**
+     * Sets the branch of the student.
+     * 
+     * @param branch the branch to set
+     */
     public void setBranch(String branch) {
         this.branch = branch;
     }
 
+    /**
+     * Gets the roll number of the student.
+     * 
+     * @return the roll number of the student
+     */
     public int getRollNum() {
         return rollNum;
     }
 
+    /**
+     * Sets the roll number of the student.
+     * 
+     * @param rollNum the roll number to set
+     */
     public void setRollNum(int rollNum) {
         this.rollNum = rollNum;
     }
 
-/*    public Billing getBilling() {
-        return billing;
-    }
-
-    public void setBilling(Billing billing) {
-        this.billing = billing;
-    }*/
-    
+    /**
+     * Updates the student information.
+     * This method should be implemented to update the student's details.
+     */
     //@Override
     public void update() {
         // Code to update student information
     }
 
+    /**
+     * Changes the student's password.
+     * 
+     * @param password the new password
+     */
     //@Override
     public void changePassword(String password) {
-        // Code to change student password
-    	super.setPassword(password);
+        super.setPassword(password);
     }
-    
-/*    public void updateGrade(String courseID, String grade) {
-    	report.addOrUpdateGrade(courseID, grade);
+
+    /**
+     * Gets the list of courses registered by the student.
+     * 
+     * @return the list of registered courses
+     */
+    public List<String> courseList() {
+        return registeredCourses;
     }
-    
-    public String getReport() {
-    	Map<String,String>grades=report.getGrades();
-    	String reportCard="";
-    	for(Course course:registeredCourses) {
-    		reportCard=reportCard.concat(course.getCourseName()+" "+grades.get(course.getCourseID()));
-    	}return reportCard;
-    }*/
-    
-    public List<String> courseList(){
-    	return registeredCourses; 
+
+    /**
+     * Adds a course to the list of registered courses.
+     * 
+     * @param courseID the ID of the course to add
+     */
+    public void addCourse(String courseID) {
+        registeredCourses.add(courseID);
     }
-   /* @Override
-    public void login() {
-        // Code for student login
-    }*/
 
-	public void addCourse(String courseID) {
-		// TODO Auto-generated method stub
-		registeredCourses.add(courseID);
-	}
+    /**
+     * Gets the approval status of the student.
+     * 
+     * @return true if the student is approved, false otherwise
+     */
+    public boolean isApproved() {
+        return approved;
+    }
 
-	public boolean isApproved() {
-		return approved;
-	}
-
-	public void setApproved(boolean status) {
-		this.approved = status;
-	}
+    /**
+     * Sets the approval status of the student.
+     * 
+     * @param status the approval status to set
+     */
+    public void setApproved(boolean status) {
+        this.approved = status;
+    }
 }

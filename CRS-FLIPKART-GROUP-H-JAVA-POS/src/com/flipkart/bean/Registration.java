@@ -5,21 +5,23 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * The Registration class handles course registration information for students.
+ * It tracks the registration status, student details, registration date, and enrolled courses.
  * 
- * @author JEDI-03
- * Class to handle course registration information for students
- * 
+ * @author GROUP-H
  */
 public class Registration {
-	private boolean status;
+
+    private boolean status;
     private long studentID;
     private Date date;
     private List<CourseRegistered> courseRegistrations; // List of registered courses
 
     /**
-     * Parameterized constructor
-     * @param studentID: the ID of the student
-     * @param date: the registration date
+     * Constructs a Registration object with the specified student ID and registration date.
+     * 
+     * @param studentID the ID of the student
+     * @param date      the registration date
      */
     public Registration(long studentID, Date date) {
         this.studentID = studentID;
@@ -27,35 +29,65 @@ public class Registration {
         this.courseRegistrations = new ArrayList<>();
     }
 
-    // Getters and Setters
+    /**
+     * Gets the student ID.
+     * 
+     * @return the ID of the student
+     */
     public long getStudentID() {
         return studentID;
     }
 
+    /**
+     * Sets the student ID.
+     * 
+     * @param studentID the ID of the student to set
+     */
     public void setStudentID(long studentID) {
         this.studentID = studentID;
     }
 
+    /**
+     * Gets the registration date.
+     * 
+     * @return the registration date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Sets the registration date.
+     * 
+     * @param date the registration date to set
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Gets the list of course registrations.
+     * 
+     * @return the list of course registrations
+     */
     public List<CourseRegistered> getCourseRegistrations() {
         return courseRegistrations;
     }
 
+    /**
+     * Sets the list of course registrations.
+     * 
+     * @param courseRegistrations the list of course registrations to set
+     */
     public void setCourseRegistrations(List<CourseRegistered> courseRegistrations) {
         this.courseRegistrations = courseRegistrations;
     }
 
     /**
-     * Method to register a course for the student
-     * @param course: the course to register
-     * @return true if registration was successful, false otherwise
+     * Registers a course for the student.
+     * 
+     * @param course the course to register
+     * @return true if the registration was successful, false otherwise
      */
     public boolean registerCourse(Course course) {
         CourseRegistered newRegistration = new CourseRegistered(course.getCourseID(), (int)studentID);
@@ -63,39 +95,52 @@ public class Registration {
     }
 
     /**
-     * Method to notify the student for fee payment
-     * @return notification message
+     * Notifies the student to pay the outstanding fee.
+     * 
+     * @return a notification message
      */
     public String notifyForFee() {
         return "Fee notification: Please pay the outstanding fee.";
     }
 
     /**
-     * Method to view registered courses
-     * @return list of registered courses
+     * Views the courses registered by the student.
+     * 
+     * @return a list of registered courses
      */
     public List<Course> viewRegisteredCourses() {
         List<Course> courses = new ArrayList<>();
-        //
+        // Implementation should be added to populate the list of registered courses
         return courses;
     }
 
     /**
-     * Method to get a list of available courses
-     * @param allCourses: list of all available courses
-     * @return list of available courses
+     * Gets a list of available courses based on the provided list of all courses.
+     * 
+     * @param allCourses the list of all available courses
+     * @return a list of available courses
      */
     public List<Course> availableCourses(List<Course> allCourses) {
-    	List<Course> courses = new ArrayList<>();
-        //
+        List<Course> courses = new ArrayList<>();
+        // Implementation should be added to filter available courses
         return courses;
     }
 
-	public boolean isStatus() {
-		return status;
-	}
+    /**
+     * Gets the registration status.
+     * 
+     * @return true if registration is complete, false otherwise
+     */
+    public boolean isStatus() {
+        return status;
+    }
 
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+    /**
+     * Sets the registration status.
+     * 
+     * @param status the registration status to set
+     */
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }
