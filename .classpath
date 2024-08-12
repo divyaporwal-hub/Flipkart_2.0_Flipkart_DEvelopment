@@ -7,6 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="CRS-FLIPKART-GROUP-H-JAVA-POS/src"/>
 	<classpathentry kind="src" path="CRS-JEDI-Group-H-Project-Collection-POS/CRS-Flipkart-Group-H-Java-POS-Project/src"/>
-	<classpathentry kind="lib" path="/Users/divya.porwal/Downloads/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar"/>
+	<classpathentry kind="lib" path="/Users/rhythm.v/Downloads/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

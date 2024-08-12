@@ -62,11 +62,6 @@ public class Billing {
         this.status = status;
     }
 
-    /**
-     * Method to provide information about the payment
-     * @return information about the payment
-     */
-
 	public String getTransactionID() {
 		return transactionID;
 	}

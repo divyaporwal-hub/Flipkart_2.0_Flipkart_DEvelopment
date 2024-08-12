@@ -1,5 +1,6 @@
 package com.flipkart.utils;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,10 +18,24 @@ private static Connection connection = null;
             return connection;
         else {
             try {
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/CRS_JEDI","root","*Binary#123");
+            	Properties prop = new Properties();
+                InputStream inputStream = new FileInputStream("/Users/rhythm.v/Documents/FINAL-JEDI/Flipkart_2.0_Flipkart_DEvelopment/CRS-FLIPKART-GROUP-H-JAVA-POS/src/config.properties");
+                prop.load(inputStream);
+                String driver = prop.getProperty("driver");
+                String url = prop.getProperty("url");
+                String user = prop.getProperty("user");
+                String password = prop.getProperty("password");
+                Class.forName(driver);
+                connection = DriverManager.getConnection(url, user, password);
             } catch (SQLException e) {
                 e.printStackTrace();
-            } 
+            } catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
             return connection;
         }
 	}
