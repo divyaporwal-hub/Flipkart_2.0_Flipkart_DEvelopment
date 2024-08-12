@@ -19,7 +19,7 @@ private static Connection connection = null;
         else {
             try {
             	Properties prop = new Properties();
-                InputStream inputStream = new FileInputStream("/Users/rhythm.v/Documents/FINAL-JEDI/Flipkart_2.0_Flipkart_DEvelopment/CRS-FLIPKART-GROUP-H-JAVA-POS/src/config.properties");
+                InputStream inputStream = new FileInputStream("/Users/rhythm.v/Downloads/JEDI3.0_Flipkart_Development_GE-main 2/CRS-FLIPKART-GROUP-E-JAVA-POS/src/config.properties");
                 prop.load(inputStream);
                 String driver = prop.getProperty("driver");
                 String url = prop.getProperty("url");
