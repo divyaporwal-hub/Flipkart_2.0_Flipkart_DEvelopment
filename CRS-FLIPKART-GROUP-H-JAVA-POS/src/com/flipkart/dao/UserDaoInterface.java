@@ -6,7 +6,7 @@ import com.flipkart.exception.UsernameAlreadyInUseException;
 
 /**
  * Interface for user data access object (DAO) operations.
- * Provides methods for retrieving user information, registering students, and updating user passwords.
+ * Provides methods for retrieving user information, registering new students, and updating user passwords.
  */
 public interface UserDaoInterface {
 
@@ -29,7 +29,8 @@ public interface UserDaoInterface {
      * @return A `String` indicating the result of the registration process (e.g., success or failure message).
      * @throws UsernameAlreadyInUseException If the username is already in use.
      */
-    String registerStudent(String username, String name, String contact, String email, String password, String branch) throws UsernameAlreadyInUseException;
+    String registerStudent(String username, String name, String contact, String email, String password, String branch) 
+        throws UsernameAlreadyInUseException;
 
     /**
      * Updates the password for a user.

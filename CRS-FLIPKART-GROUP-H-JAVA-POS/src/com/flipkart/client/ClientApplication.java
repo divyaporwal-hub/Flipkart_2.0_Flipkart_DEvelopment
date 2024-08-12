@@ -1,18 +1,17 @@
 package com.flipkart.client;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 import com.flipkart.bean.Admin;
-import com.flipkart.bean.Catalog;
-import com.flipkart.bean.Course;
-import com.flipkart.bean.Prof;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
-import com.flipkart.business.*;
-import java.util.Scanner;
-import java.util.Set;
+import com.flipkart.business.UserOperations;
 
+/**
+ * The main entry point for the CRS (Course Registration System) application.
+ * Provides a menu-driven interface for users to log in, register as a student,
+ * and update their passwords.
+ */
 public class ClientApplication {
 	static UserOperations userInstance;
 	static Catalog catalog;

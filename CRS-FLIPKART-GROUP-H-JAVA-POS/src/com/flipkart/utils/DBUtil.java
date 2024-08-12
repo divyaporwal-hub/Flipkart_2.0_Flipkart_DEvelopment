@@ -9,16 +9,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * Utility class for managing database connections.
+ * Provides methods to establish a connection to the database and close the connection.
+ */
 public class DBUtil {
-private static Connection connection = null;
-	
-	public static Connection getConnection() {
-		
-        if (connection != null)
+    
+    /** Singleton instance of the database connection. */
+    private static Connection connection = null;
+    
+    /**
+     * Gets a connection to the database.
+     * If the connection already exists, it returns the existing connection.
+     * Otherwise, it establishes a new connection using properties from a configuration file.
+     * 
+     * @return the database connection
+     */
+    public static Connection getConnection() {
+        
+        if (connection != null) {
             return connection;
-        else {
+        } else {
             try {
-            	Properties prop = new Properties();
+                Properties prop = new Properties();
                 InputStream inputStream = new FileInputStream("/Users/rhythm.v/Downloads/JEDI3.0_Flipkart_Development_GE-main 2/CRS-FLIPKART-GROUP-E-JAVA-POS/src/config.properties");
                 prop.load(inputStream);
                 String driver = prop.getProperty("driver");
@@ -30,24 +43,27 @@ private static Connection connection = null;
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             return connection;
         }
-	}
-	
-	public static boolean closeConnection() {
+    }
+    
+    /**
+     * Closes the database connection if it exists.
+     * 
+     * @return true if the connection was closed successfully, false otherwise
+     */
+    public static boolean closeConnection() {
         try {
-            if (connection != null)
+            if (connection != null) {
                 connection.close();
-        } 
-        catch (SQLException se) {
-        	return false;
+            }
+        } catch (SQLException se) {
+            return false;
         }
         return true;
-	}
+    }
 }

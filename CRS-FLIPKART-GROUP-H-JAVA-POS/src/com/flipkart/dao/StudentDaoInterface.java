@@ -12,6 +12,10 @@ import com.flipkart.exception.CourseAlreadyOptedException;
 import com.flipkart.exception.CourseNotAvailableException;
 import com.flipkart.exception.CourseNotFoundException;
 
+/**
+ * Interface for student data access object (DAO) operations.
+ * Provides methods for students to register for courses, view their enrolled courses, and access report cards and billing information.
+ */
 public interface StudentDaoInterface {
 
     /**
