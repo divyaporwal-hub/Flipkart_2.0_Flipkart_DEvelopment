@@ -2,7 +2,6 @@ package com.flipkart.dao;
 
 import java.util.Set;
 
-
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Prof;
 import com.flipkart.bean.Student;
@@ -10,8 +9,6 @@ import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.exception.CourseAlreadyExistsException;
 import com.flipkart.exception.CourseNotFoundException;
 import com.flipkart.exception.UserAlreadyExistsException;
-
-import java.util.Set;
 
 /**
  * Interface for admin data access object (DAO) operations.
