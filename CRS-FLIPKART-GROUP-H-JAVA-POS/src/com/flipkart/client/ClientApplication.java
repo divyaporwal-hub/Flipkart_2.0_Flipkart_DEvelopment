@@ -3,6 +3,8 @@ package com.flipkart.client;
 import java.util.Scanner;
 
 import com.flipkart.bean.Admin;
+import com.flipkart.bean.Catalog;
+import com.flipkart.bean.Prof;
 import com.flipkart.bean.Student;
 import com.flipkart.bean.User;
 import com.flipkart.business.UserOperations;
@@ -106,7 +108,7 @@ public class ClientApplication {
 		System.out.println("Enter Branch:");
 		String branch = s.next();
 		s.nextLine();
-		System.out.println("Enter Password:);
+		System.out.println("Enter Password:");
 		String password = s.next();
 		s.nextLine();
 		System.out.println("------------------------------------------------------");

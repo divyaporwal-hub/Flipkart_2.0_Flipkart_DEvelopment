@@ -34,37 +34,40 @@ public class UserDaoServices implements UserDaoInterface {
          * @return The `User` object associated with the specified username.
          * @throws UserNotFoundException If no user with the specified username is found.
          */
-        try {
-            PreparedStatement ps = conn.prepareStatement(DBQueries.GET_USER_USERNAME);
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
+    	try{
+			PreparedStatement ps = conn.prepareStatement(DBQueries.GET_USER_USERNAME);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
 	
-            if (rs.next()) {
-                String userID = rs.getString("userID");
-                String role = rs.getString("role");
-                String contact = rs.getString("contact");
-                String email = rs.getString("email");
-                String name = rs.getString("name");
-                String password = rs.getString("password");
-                
-                if (role.equals("Student")) {
-                    try {
-                        return getStudent(userID, name, role, contact, email, password);
-                    } catch (StudentNotApprovedException e) {
-                        e.printStackTrace();
-                        return null;
-                    }
-                } else if (role.equals("Professor")) {
-                    return getProfessor(userID, name, role, contact, email, password);
-                } else if (role.equals("Admin")) {
-                    return getAdmin(userID, name, role, contact, email, password);
-                }
-            } else {
-                throw new UserNotFoundException(username);
-            }
-        } catch (SQLException e) {
-            return null;
-        }
+			User user = null;
+			if (rs.next()) {
+				String userID=rs.getString("userID"), role=rs.getString("role"), 
+						contact=rs.getString("contact"), email=rs.getString("email"), 
+						name=rs.getString("name"),password=rs.getString("password");
+				//user=new User(userID,name,role,contact,email,password);
+				
+				if(role.equals("Student")) {
+					try {
+						user=getStudent(userID,name,role,contact,email,password);
+					} catch (StudentNotApprovedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+				else if(role.equals("Professor")) {
+					user=getProfessor(userID,name,role,contact,email,password);
+				}
+				else if(role.equals("Admin")) {
+					user=getAdmin(userID,name,role,contact,email,password);
+				}
+				return user;
+			}
+			else {
+				throw new UserNotFoundException(username);
+			}
+		}catch(SQLException e) {
+			return null;
+		}
     }
 	
     private User getStudent(String userID, String name, String role,
