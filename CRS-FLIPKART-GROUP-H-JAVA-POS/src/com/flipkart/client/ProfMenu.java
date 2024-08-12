@@ -27,9 +27,15 @@ public class ProfMenu {
 		int in = 0;
 		
 		while (in != 4) {
-			System.out.println("Professor Menu:");
-			System.out.println("1. Offer Course\n2. View Registered Students\n3. Submit Grades\n4. Exit");
-		
+			System.out.println("\t\t\t\t\t------------------------------------------------------");
+			System.out.println("\t\t\t\t\t\t           Professor Menu");
+			System.out.println("");
+			System.out.println("\t\t\t\t\t\t\t1. Offer Course");
+			System.out.println("\t\t\t\t\t\t\t2. View Registered Studentn");
+			System.out.println("\t\t\t\t\t\t\t3. Submit Grades");
+			System.out.println("\t\t\t\t\t\t\t4. Exit");
+			System.out.println("\t\t\t\t\t------------------------------------------------------");
+
 			in = s.nextInt();
 			
 			switch (in) {

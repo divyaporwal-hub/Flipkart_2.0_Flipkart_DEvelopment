@@ -26,19 +26,24 @@ public class ClientApplication {
 		
 		// Main menu loop
 		while (input != 4) {
-			System.out.println("Welcome to the CRS Application :-->");
-			System.out.println("Press 1:--> Login");
-			System.out.println("Press 2:--> Registration");
-			System.out.println("Press 3:--> Update Password");
-			System.out.println("Press 4:--> Exit");
+			System.out.println("\t\t\t\t\t------------------------------------------------------");
+			System.out.println("\t\t\t\t\t\t Welcome to the CRS Application");
+			System.out.println();
+			System.out.println("\t\t\t\t\t\t\t1. Login");
+			System.out.println("\t\t\t\t\t\t\t2. Registration");
+			System.out.println("\t\t\t\t\t\t\t3. Update Password");
+			System.out.println("\t\t\t\t\t\t\t4. Exit");
+			System.out.println("\t\t\t\t\t------------------------------------------------------");
 			input = s.nextInt();
 			
 			switch (input) {
 				case 1:
-					System.out.println("Enter the Username :--");
+					System.out.println("------------------------------------------------------");
+					System.out.println("Enter the Username:");
 					username = s.next();
-					System.out.println("Enter the Password :--");
+					System.out.println("Enter the Password:");
 					password = s.next();
+					System.out.println("------------------------------------------------------");
 					login(username, password);
 					break;
 				case 2:
@@ -85,22 +90,27 @@ public class ClientApplication {
 	 * Handles student registration by taking user input and registering a new student.
 	 */
 	public static void studentRegistraion() {
+
 		Scanner s = new Scanner(System.in);
+		System.out.println("------------------------------------------------------");
 		System.out.println("Enter Username :");
 		String username = s.next();
 		s.nextLine();
 		System.out.println("Enter Name :");
 		String name = s.nextLine();
-		System.out.println("Enter Details in the following format: \n<contact> <email> <branch> <password>");
-		
-		String details = s.nextLine();
-        
-        // Split the details input into separate fields
-        String[] detailsArray = details.split(" ");
-        
-		String contact = detailsArray[0], email = detailsArray[1], 
-				branch = detailsArray[2], password = detailsArray[3];
-		
+		System.out.println("Enter Contact:");
+		String contact = s.next();
+		s.nextLine();
+		System.out.println("Enter Email:");
+		String email = s.next();
+		s.nextLine();
+		System.out.println("Enter Branch:");
+		String branch = s.next();
+		s.nextLine();
+		System.out.println("Enter Password:);
+		String password = s.next();
+		s.nextLine();
+		System.out.println("------------------------------------------------------");
 		System.out.println(userInstance.registerStudent(username, name, contact, email, password, branch));		
 	}
 	
@@ -113,13 +123,14 @@ public class ClientApplication {
 	public static void updatePassword() {
 		Scanner s = new Scanner(System.in);
 		String username, password, newPassword;
+		System.out.println("------------------------------------------------------");
 		System.out.println("Enter the Username :--");
 		username = s.next();
 		System.out.println("Enter old Password :--");
 		password = s.next();
 		System.out.println("Enter new Password :--");
 		newPassword = s.next();
-		
+		System.out.println("------------------------------------------------------");
 		if (userInstance.changePassword(username, password, newPassword)) {
 			System.out.println("Password changed successfully");
 		}

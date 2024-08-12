@@ -25,9 +25,17 @@ class StudentMenu {
 		System.out.println("LOGIN TIME: " + localDateTime);
 
 		while (in != 6) {
-			System.out.println("Student Menu:");
-			System.out.println("1. Register Courses\n2. View Courses\n3. View Report Card\n4. Billing info\n5. Make Payment\n6. Exit");
-			
+			System.out.println("\t\t\t\t\t------------------------------------------------------");
+			System.out.println("\t\t\t\t\t\t           Student Menu");
+			System.out.println("");
+			System.out.println("\t\t\t\t\t\t\t1. Register Courses");
+			System.out.println("\t\t\t\t\t\t\t2. View Courses");
+			System.out.println("\t\t\t\t\t\t\t3. View Report Card");
+			System.out.println("\t\t\t\t\t\t\t4. Billing info");
+			System.out.println("\t\t\t\t\t\t\t5. Make Payment");
+			System.out.println("\t\t\t\t\t\t\t6. Exit");
+			System.out.println("\t\t\t\t\t------------------------------------------------------");
+
 			in = s.nextInt();
 			switch (in) {
 				case 1:

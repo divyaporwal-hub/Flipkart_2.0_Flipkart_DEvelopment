@@ -22,15 +22,24 @@ public class AdminMenu {
 	 * @param username The username of the admin.
 	 */
 	public void adminMenu(Admin admin, String username) {
-		System.out.println("Welcome to CRS Application " + username);
+		System.out.println("\t\t\t\t\t------------------------------------------------------");
+		System.out.println("\t\t\t\t\t\t Welcome to the CRS Application " + username);
+		System.out.println();
 		LocalDateTime localDateTime = LocalDateTime.now();
-		System.out.println("LOGIN TIME: " + localDateTime);
+		System.out.println("\t\t\t\t\t\t LOGIN TIME: " + localDateTime);
 		
 		Scanner s = new Scanner(System.in);
 		int in = 0;
 		
 		while (in != 7) {
-			System.out.println("1. Add Professor\n2. Remove Professor\n3. Modify Course\n4. Add Course\n5. Remove Course\n6. Approve Student Registration\n7. Exit");
+			System.out.println("\t\t\t\t\t\t\t1. Add Professor");
+			System.out.println("\t\t\t\t\t\t\t2. Remove Professor");
+			System.out.println("\t\t\t\t\t\t\t3. Modify Course");
+			System.out.println("\t\t\t\t\t\t\t4. Add Course");
+			System.out.println("\t\t\t\t\t\t\t5. Remove Course");
+			System.out.println("\t\t\t\t\t\t\t6. Approve Student Registration");
+			System.out.println("\t\t\t\t\t\t\t7. Exit");
+			System.out.println("\t\t\t\t\t------------------------------------------------------");
 			in = s.nextInt();
 			
 			switch (in) {
