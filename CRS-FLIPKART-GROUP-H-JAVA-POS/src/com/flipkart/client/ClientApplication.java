@@ -75,7 +75,10 @@ public class ClientApplication {
 		}
 		
 		if (user.getRole().equals("Student")) {
-			if (!((Student)user).isApproved()) return;
+			if (!((Student)user).isApproved()) {
+				System.out.println("Student is not approved");
+				return;
+			}
 			StudentMenu studentOps = new StudentMenu();
 			studentOps.studentMenu((Student)user, username);
 		} else if (user.getRole().equals("Professor")) {

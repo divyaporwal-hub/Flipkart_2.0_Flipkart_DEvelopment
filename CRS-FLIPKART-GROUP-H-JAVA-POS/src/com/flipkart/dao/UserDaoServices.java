@@ -51,7 +51,7 @@ public class UserDaoServices implements UserDaoInterface {
 						user=getStudent(userID,name,role,contact,email,password);
 					} catch (StudentNotApprovedException e) {
 						// TODO Auto-generated catch block
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				}
 				else if(role.equals("Professor")) {
@@ -83,9 +83,9 @@ public class UserDaoServices implements UserDaoInterface {
                 boolean approved = rs.getBoolean("approved");
                 
                 Student student = new Student(userID, name, contact, email, branch, rollNum, approved, password);
-                if (!approved) {
-                    throw new StudentNotApprovedException(userID);
-                }
+//                if (!approved) {
+//                    throw new StudentNotApprovedException(userID);
+//                }
                 return student;
             } else {
                 return null;
