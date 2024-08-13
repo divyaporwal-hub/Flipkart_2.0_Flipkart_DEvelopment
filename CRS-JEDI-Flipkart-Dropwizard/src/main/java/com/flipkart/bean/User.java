@@ -1,131 +1,83 @@
-/**
- * 
- */
 package com.flipkart.bean;
 
-/**
- * @author Dell
- *
- */
-public class User {
+public abstract class User {
+    // Attributes
+    private String ID;
+    private String name;
+    private String role;
+    private String contact;
+    private String email;
+    private String password;
 
-	private String userName;
-	private String name;
-	private String role;
-	private String password;
-	private String contactNumber;
-	private Integer joiningYear;
-	
-	
-	/**
-	 * @return the userID
-	 */
-	public String getUserID() {
-		return userName;
-	}
+    // Constructor
+    public User(String ID, String name, String role, String contact, String email, String password) {
+        this.ID = ID;
+        this.name = name;
+        this.role = role;
+        this.contact = contact;
+        this.email = email;
+        this.password=password;
+    }
 
-	/**
-	 * @param userName the userID to set
-	 */
-	public void setUserID(String userName) {
-		this.userName = userName;
-	}
+    // Getter and Setter methods
+    public String getID() {
+        return ID;
+    }
 
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	/**
-	 * @return the role
-	 */
-	public String getRole() {
-		return role;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public String getRole() {
+        return role;
+    }
 
-	/**
-	 * @return the password
-	 */
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    // Abstract methods
+    public abstract void update();
+    public abstract void changePassword(String password);
+    //public abstract void login();
+
 	public String getPassword() {
 		return password;
 	}
 
-	/**
-	 * @param password the password to set
-	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	/**
-	 * @return the contactNumber
-	 */
-	public String getContactNumber() {
-		return contactNumber;
+	/*public String getPassword() {
+		return password;
 	}
 
-	/**
-	 * @param contactNumber the contactNumber to set
-	 */
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
-
-	/**
-	 * @return the joiningYear
-	 */
-	public Integer getJoiningYear() {
-		return joiningYear;
-	}
-
-	/**
-	 * @param joiningYear the joiningYear to set
-	 */
-	public void setJoiningYear(Integer joiningYear) {
-		this.joiningYear = joiningYear;
-	}
-	
-		
-	public User() {
-		userName = "";
-		name = "Default";
-		role = "Student";
-		password = "";
-		contactNumber = "0000000000";
-		joiningYear = 2021;
-		}
-
-	/**
-	 * @param userName
-	 * @param name
-	 * @param role
-	 * @param password
-	 * @param contactNumber
-	 * @param joiningYear
-	 */
-	public User(String userName, String name, String role, String password, String contactNumber, Integer joiningYear) {
-		super();
-		this.userName = userName;
-		this.name = name;
-		this.role = role;
+	public void setPassword(String password) {
 		this.password = password;
-		this.contactNumber = contactNumber;
-		this.joiningYear = joiningYear;
-	}
+	}*/
 }

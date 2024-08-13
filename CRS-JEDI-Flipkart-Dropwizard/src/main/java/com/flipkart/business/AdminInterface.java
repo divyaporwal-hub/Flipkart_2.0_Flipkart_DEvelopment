@@ -1,69 +1,83 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.Professor;
-import com.flipkart.bean.ReportCard;
+import com.flipkart.bean.Catalog;
+import com.flipkart.bean.Course;
+import com.flipkart.bean.Prof;
 import com.flipkart.bean.Student;
-import com.flipkart.exception.*;
+import com.flipkart.bean.User;
+import com.flipkart.exception.CourseAlreadyExistsException;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.UserAlreadyExistsException;
+import com.flipkart.exception.UserNotFoundException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-/**
- * @author Dell
- *
- */
 public interface AdminInterface {
 
-	/**
-	 * @param semesterId
-	 */
-	public void enableFeePayment(int semesterId) throws Exception ;
+    /**
+     * Adds a new professor to the system.
+     * @param prof The `Prof` object containing the details of the professor to be added.
+     * @param username The username of the admin performing the operation.
+     * @return A `String` message indicating the result of the addition operation (e.g., success or failure).
+     * @throws UserAlreadyExistsException 
+     */
+    public String addProf(Prof prof, String username) throws UserAlreadyExistsException;
 
-	/**
-	 * @param studentId
-	 * @throws StudentNotApprovedException 
-	 * @throws FeesPendingException 
-	 */
-	public void approveStudentRegistration(int studentId,int semesterId) throws Exception;
-	
-	/**
-	 * @param professor
-	 */
-	public void addProfessor(Professor professor) throws Exception;
-	
-	/**
-	 * @param professorID
-	 */
-	public void removeProfessor(int professorID) throws Exception;
-	
-	/**
-	 * @param studentID
-	 * @return 
-	 * @throws StudentNotApprovedException 
-	 * @throws FeesPendingException 
-	 */
-	public ReportCard generateReportCard(int studentID) throws Exception;
-	
-	/**
-	 * @param courseID
-	 */
-	public void removeCourse(String courseID) throws Exception;
+    /**
+     * Removes a professor from the system using their ID.
+     * @param profID The ID of the professor to be removed.
+     * @return A `String` message indicating the result of the removal operation (e.g., success or failure).
+     * @throws UserNotFoundException 
+     */
+    public String removeProf(String profID) throws UserNotFoundException;
 
-	public void addCourse(String course_name, String courseID, int semester) throws Exception;
+    /**
+     * Updates the details of an existing course.
+     * @param courseCode The code of the course to be updated.
+     * @param updatedCourse The `Course` object containing the updated details of the course.
+     * @return A `String` message indicating the result of the update operation (e.g., success or failure).
+     * @throws CourseNotFoundException 
+     * @throws CourseAlreadyExistsException 
+     */
+    public String updateCourse(String courseCode, Course updatedCourse) throws CourseAlreadyExistsException, CourseNotFoundException;
 
-	/**
-	 * @param courseID
-	 * @param semester
-	 * @param viewAll
-	 * @return
-	 */
-	public HashMap<String, ArrayList<Integer>> viewCourseStudentList(String courseID, int semester, Boolean viewAll)  throws Exception;
+    /**
+     * Adds a new course to the catalog.
+     * @param course The `Course` object containing the details of the course to be added.
+     * @return A `String` message indicating the result of the addition operation (e.g., success or failure).
+     * @throws CourseAlreadyExistsException 
+     */
+    public String addCourse(Course course) throws CourseAlreadyExistsException;
 
-	public List<Student> getPendingStudentAccountsList() throws Exception;
+    /**
+     * Removes a course from the catalog using its ID.
+     * @param courseID The ID of the course to be removed.
+     * @return A `String` message indicating the result of the removal operation (e.g., success or failure).
+     * @throws CourseNotFoundException 
+     */
+    public String removeCourse(String courseID) throws CourseNotFoundException;
 
-	/**
-	 * @param studentID
-	 */
-	public void approveStudentAccount(Integer studentID) throws Exception;
+    /**
+     * Approves a student's registration, allowing them to participate in courses.
+     * @param studentID The ID of the student whose registration is to be approved.
+     * @return A `String` message indicating the result of the registration approval (e.g., success or failure).
+     * @throws UserNotFoundException 
+     */
+    public String registerStudent(String studentID) throws UserNotFoundException;
+
+    /**
+     * Retrieves a list of all available courses.
+     * @return A `String` representation of the list of courses.
+     */
+    public String viewCourses();
+
+    /**
+     * Retrieves a list of all professors.
+     * @return A `String` representation of the list of professors.
+     */
+    public String viewProfessors();
+
+    /**
+     * Retrieves a list of all students whose registration is pending approval.
+     * @return A `String` representation of the list of unapproved students.
+     */
+    public String viewUnapprovedStudents();
 }

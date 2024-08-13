@@ -1,27 +1,15 @@
 package com.flipkart.exception;
 
-// Exception arises when prof doesnt exist in the given list
 public class ProfessorNotFoundException extends Exception {
 
-    private int professorID;
+    private String professorId;
 
-    /**
-     * @param professorID
-     */
-    public ProfessorNotFoundException(int professorID) {
-        super();
-        this.professorID = professorID;
-    }
-
-    /**
-     * @return the courseID
-     */
-    public int professorID() {
-        return professorID;
+    public ProfessorNotFoundException(String professorId) {
+        this.professorId = professorId;
     }
 
     @Override
     public String getMessage() {
-        return "ProfessorID: " + professorID + "is not present in the list!";
+        return "Professor with ID: " + professorId + " not found.";
     }
 }

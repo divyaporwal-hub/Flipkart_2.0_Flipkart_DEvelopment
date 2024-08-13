@@ -1,9 +1,16 @@
 package com.flipkart.exception;
 
-// Exception arises when report card is accessed but not yet generated.
+
 public class ReportCardNotGeneratedException extends Exception {
-	@Override
-	public String getMessage() {
-		return "Report Card Not Generated !";
-	}
+
+    private String studentId;
+
+    public ReportCardNotGeneratedException(String studentId) {
+        this.studentId = studentId;
+    }
+
+    @Override
+    public String getMessage() {
+        return "Report card not generated for student with ID: " + studentId;
+    }
 }

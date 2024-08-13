@@ -1,31 +1,26 @@
-/**
- * 
- */
 package com.flipkart.exception;
 
-/**
- * Exception thrown when student is not approval
- * @author Aeron
- *
- */
 public class StudentNotApprovedException extends Exception{
+private String studentId;
 	
-	private int studentId;
-
-	public StudentNotApprovedException(Integer studentId) {
-		this.studentId=studentId;
+	public StudentNotApprovedException(String id) {
+		studentId = id;
 	}
 	
-	public int getStudentId() {
+	/**
+	 * Getter function for studentId
+	 * @return
+	 */
+	public String getStudentId() {
 		return studentId;
 	}
-
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
 	
+
+	/**
+	 * Message returned when exception is thrown
+	 */
 	@Override
 	public String getMessage() {
-		return "Student "+ studentId +" is not approved!!";
+		return "StudentId: " + studentId + "has not been approved!";
 	}
 }
