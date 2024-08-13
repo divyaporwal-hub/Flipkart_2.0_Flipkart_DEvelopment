@@ -128,8 +128,6 @@ public class AdminMenu {
         Scanner s = new Scanner(System.in);
         System.out.println("Enter old courseID");
         String oldCourseID = s.next();
-        Scanner s = new Scanner(System.in);
-
         System.out.println("Enter CourseID :");
         String courseID = s.next();
         s.nextLine();

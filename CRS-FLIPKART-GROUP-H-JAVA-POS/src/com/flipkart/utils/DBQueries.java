@@ -70,7 +70,7 @@ public class DBQueries {
     public static final String SET_GRADE = "INSERT INTO reportCard(studentID, courseID, grade) VALUES (?, ?, ?)";
     
     /** Query to view the course catalog. */
-    public static final String VIEW_COURSE_CATALOG = "SELECT * FROM crsapp.catalog";
+    public static final String VIEW_COURSE_CATALOG = "SELECT * FROM catalog";
     
     /** Query to get grades for a specific student. */
     public static final String GET_GRADES = "SELECT * FROM reportCard WHERE studentID = ?";
