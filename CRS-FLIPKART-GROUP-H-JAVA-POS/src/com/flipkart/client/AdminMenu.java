@@ -101,12 +101,19 @@ public class AdminMenu {
     private void addCourse(Admin admin) {
         System.out.println("Existing Courses:");
         System.out.println(adminService.viewCourses());
-        System.out.println("Enter Course details in the following format:\n<courseID> <courseName> <seats> <price>");
         Scanner s = new Scanner(System.in);
+        System.out.println("Enter CourseID :");
         String courseID = s.next();
+        s.nextLine();
+        System.out.println("Enter Course Name :");
         String courseName = s.next();
+        s.nextLine();
+        System.out.println("Enter Seats:");
         int seats = s.nextInt();
+        s.nextLine();
+        System.out.println("Enter Price:");
         float price = s.nextFloat();
+        s.nextLine();
         Course course = new Course(courseID, courseName, null, seats, price);
         System.out.println(adminService.addCourse(course));
     }
@@ -121,12 +128,23 @@ public class AdminMenu {
         Scanner s = new Scanner(System.in);
         System.out.println("Enter old courseID");
         String oldCourseID = s.next();
-        System.out.println("Enter Course details in the following format:\n<courseID> <courseName> <seats> <profID> <price>");
+        Scanner s = new Scanner(System.in);
+
+        System.out.println("Enter CourseID :");
         String courseID = s.next();
+        s.nextLine();
+        System.out.println("Enter Course Name :");
         String courseName = s.next();
+        s.nextLine();
+        System.out.println("Enter Seats:");
         int seats = s.nextInt();
+        s.nextLine();
+        System.out.println("Enter Professor ID :");
         String profID = s.next();
+        s.nextLine();
+        System.out.println("Enter Price:");
         float price = s.nextFloat();
+        s.nextLine();
         Course course = new Course(courseID, courseName, profID, seats, price);
         adminService.updateCourse(oldCourseID, course);
     }
@@ -148,14 +166,26 @@ public class AdminMenu {
      * @param admin The admin user performing the operation.
      */
     private void addProf(Admin admin) {
-        System.out.println("Enter Prof details in the following format:\n<username> <profName> <contact> <email> <dept> <qualification> <password>");
         Scanner s = new Scanner(System.in);
+        System.out.println("Enter User Name :");
         String username = s.next();
+        s.nextLine();
+        System.out.println("Enter Professor Name :");
         String profName = s.next();
+        s.nextLine();
+        System.out.println("Enter Contact:");
         String contact = s.next();
+        s.nextLine();
+        System.out.println("Enter E-mail id: :");
         String email = s.next();
+        s.nextLine();
+        System.out.println("Enter Department Name :");
         String dept = s.next();
+        s.nextLine();
+        System.out.println("Enter Qualification :");
         String qualification = s.next();
+        s.nextLine();
+        System.out.println("Enter Password :");
         String password = s.next();
         Prof prof = new Prof(null, profName, contact, email, dept, qualification, password);
         System.out.println(adminService.addProf(prof, username));
