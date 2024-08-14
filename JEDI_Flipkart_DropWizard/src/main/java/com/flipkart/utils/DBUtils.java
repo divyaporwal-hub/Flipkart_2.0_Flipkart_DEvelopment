@@ -21,7 +21,7 @@ public class DBUtils {
             {
 
                 Properties prop = new Properties();
-                InputStream inputStream = new FileInputStream("/Users/kunal.bansal1/Desktop/Project/JEDI-2.0_Flipkart_Development/CRS-FLIPKART-GROUP-A-JAVA-POS/src/config.properties");
+                InputStream inputStream = new FileInputStream("/Users/divya.porwal/Desktop/Project/JEDI-2.0_Flipkart_Development/CRS-FLIPKART-GROUP-A-JAVA-POS/src/config.properties");
                 prop.load(inputStream);
                 String driver = prop.getProperty("driver");
                 String url = prop.getProperty("url");
